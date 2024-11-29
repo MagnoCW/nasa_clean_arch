@@ -1,9 +1,9 @@
 import 'package:dartz/dartz.dart';
 import 'package:equatable/equatable.dart';
-import 'package:nasa_clean_arch/core/errors/failure.dart';
+import 'package:nasa_clean_arch/core/errors/failures.dart';
 
 abstract class Usecase<Output, Input> {
-  Future<Either<Failure, Output>> call(Input params);
+  Future<Either<Failures, Output>> call(Input params);
 }
 
 class NoParams extends Equatable {

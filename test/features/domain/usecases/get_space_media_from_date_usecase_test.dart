@@ -1,7 +1,7 @@
 import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
-import 'package:nasa_clean_arch/core/errors/failure.dart';
+import 'package:nasa_clean_arch/core/errors/failures.dart';
 import 'package:nasa_clean_arch/features/domain/entities/space_media_entity.dart';
 import 'package:nasa_clean_arch/features/domain/repositories/space_media_repository.dart';
 import 'package:nasa_clean_arch/features/domain/usecases/get_space_media_from_date_usecase.dart';
@@ -27,7 +27,7 @@ void main() {
   test("Should get space media entity for a given data from the repository",
       () async {
     when(() => repository.getSpaceMediaFromDate(tDate)).thenAnswer(
-        (_) async => const Right<Failure, SpaceMediaEntity>(tSpaceMedia));
+        (_) async => const Right<Failures, SpaceMediaEntity>(tSpaceMedia));
 
     final result = await usecase(tDate);
     expect(result, const Right(tSpaceMedia));
@@ -36,7 +36,7 @@ void main() {
 
   test("Should return a server failure when don't succed", () async {
     when(() => repository.getSpaceMediaFromDate(tDate)).thenAnswer(
-        (_) async => Left<Failure, SpaceMediaEntity>(ServerFailure()));
+        (_) async => Left<Failures, SpaceMediaEntity>(ServerFailure()));
 
     final result = await usecase(tDate);
     expect(result, Left(ServerFailure()));
