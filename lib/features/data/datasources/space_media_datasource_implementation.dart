@@ -1,7 +1,7 @@
 import 'dart:convert';
 
-import 'package:nasa_clean_arch/core/errors/exceptions.dart';
 import 'package:nasa_clean_arch/core/http_client/core_http_client.dart';
+import 'package:nasa_clean_arch/core/usecase/errors/exceptions.dart';
 import 'package:nasa_clean_arch/core/utils/converters/date_to_string_converter.dart';
 import 'package:nasa_clean_arch/core/utils/keys/nasa_api_key.dart';
 import 'package:nasa_clean_arch/features/data/datasources/endpoints/nasa_endpoints.dart';

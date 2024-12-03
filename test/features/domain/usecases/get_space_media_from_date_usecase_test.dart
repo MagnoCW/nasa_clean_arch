@@ -1,20 +1,22 @@
 import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
-import 'package:nasa_clean_arch/core/errors/failures.dart';
+import 'package:nasa_clean_arch/core/usecase/errors/failures.dart';
 import 'package:nasa_clean_arch/features/domain/entities/space_media_entity.dart';
 import 'package:nasa_clean_arch/features/domain/repositories/space_media_repository.dart';
 import 'package:nasa_clean_arch/features/domain/usecases/get_space_media_from_date_usecase.dart';
 
+import '../../mocks/date_mock.dart';
+
 class MockSpaceMediaRepository extends Mock implements SpaceMediaRepository {}
 
 void main() {
-  late getSpaceMediaFromDateUseCase usecase;
+  late GetSpaceMediaFromDateUseCase usecase;
   late SpaceMediaRepository repository;
 
   setUp(() {
     repository = MockSpaceMediaRepository();
-    usecase = getSpaceMediaFromDateUseCase(repository: repository);
+    usecase = GetSpaceMediaFromDateUseCase(repository: repository);
   });
 
   const tSpaceMedia = SpaceMediaEntity(
@@ -23,7 +25,7 @@ void main() {
       title: "title",
       mediaUrl:
           "https://letsenhance.io/static/73136da51c245e80edc6ccfe44888a99/1015f/MainBefore.jpg");
-  final tDate = DateTime(2024, 02, 02);
+
   test("Should get space media entity for a given data from the repository",
       () async {
     when(() => repository.getSpaceMediaFromDate(tDate)).thenAnswer(
